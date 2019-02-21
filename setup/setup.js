@@ -3,10 +3,14 @@
 const fs = require("fs");
 const path = require("path");
 const root = process.cwd();
+// node_modulesFolder路径
 const node_modulesFolder = path.resolve(root, "node_modules");
+// node_modules下webpack路径
 const webpackDependencyFolder = path.resolve(root, "node_modules/webpack");
+console.log("webpackDependencyFolder ===>", webpackDependencyFolder);
 
 function setup() {
+	console.log("setup lei le");
 	return checkSymlinkExistsAsync()
 		.then(hasSymlink => {
 			if (!hasSymlink) {
@@ -21,6 +25,7 @@ function setup() {
 			process.exitCode = 0;
 		})
 		.catch(e => {
+			console.log("catch lei le");
 			console.error(e);
 			process.exitCode = 1;
 		});
@@ -37,10 +42,13 @@ function checkSymlinkExistsAsync() {
 		if (
 			fs.existsSync(node_modulesFolder) &&
 			fs.existsSync(webpackDependencyFolder) &&
+			// fs.lstatSync 返回一个fs.stat对象 isSymbolicLink方法用来判断是否是一个链接(SymbolicLink, 应该是软链接)
 			fs.lstatSync(webpackDependencyFolder).isSymbolicLink()
 		) {
+			console.log("true leile");
 			resolve(true);
 		} else {
+			console.log("false leile");
 			resolve(false);
 		}
 	});

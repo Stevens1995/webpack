@@ -82,7 +82,7 @@ const CLIs = [
 
 const installedClis = CLIs.filter(cli => cli.installed);
 
-if (installedClis.length === 0) {
+if (installedClis.length === 0) { // 如果没有安装webpack-cli或者webpack-command 在shell中提示安装
 	const path = require("path");
 	const fs = require("fs");
 	const readLine = require("readline");
@@ -153,7 +153,7 @@ if (installedClis.length === 0) {
 	// eslint-disable-next-line node/no-missing-require
 	const pkg = require(pkgPath);
 	// eslint-disable-next-line node/no-missing-require
-	require(path.resolve(
+	require(path.resolve( // 执行安装的命令行工具 (webpack-cli or webpack-command)
 		path.dirname(pkgPath),
 		pkg.bin[installedClis[0].binName]
 	));

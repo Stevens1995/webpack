@@ -149,6 +149,7 @@ if (installedClis.length === 0) { // 如果没有安装webpack-cli或者webpack-
 	});
 } else if (installedClis.length === 1) {
 	const path = require("path");
+	// 下面的require.resolve会安装require的机制去查询相应的模块，但是并不会加载，查询到了返回模块位置
 	const pkgPath = require.resolve(`${installedClis[0].package}/package.json`);
 	// eslint-disable-next-line node/no-missing-require
 	const pkg = require(pkgPath);
